@@ -1,0 +1,33 @@
+# Dockerfile para Servidor Dedicado Godot 4 Headless (Multiplayer en Coolify)
+FROM ubuntu:22.04
+
+# Evitar interacción durante apt-get
+ENV DEBIAN_FRONTEND=noninteractive
+ENV GODOT_VERSION=4.3
+ENV PORT=9090
+
+# Instalar dependencias necesarias para Godot Headless en Linux
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    wget \
+    unzip \
+    libfontconfig1 \
+    libasound2 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Descargar binario oficial de Godot 4 Server / Headless
+RUN wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip -O /tmp/godot.zip \
+    && unzip /tmp/godot.zip -d /usr/local/bin \
+    && mv /usr/local/bin/Godot_v4.3-stable_linux.x86_64 /usr/local/bin/godot \
+    && chmod +x /usr/local/bin/godot \
+    && rm /tmp/godot.zip
+
+WORKDIR /app
+
+# Copiar archivos del proyecto
+COPY . /app
+
+EXPOSE 9090
+
+# Ejecución en modo servidor headless
+CMD ["godot", "--headless", "--server", "res://scenes/map/CityMap.tscn"]

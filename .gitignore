@@ -1,0 +1,8 @@
+.godot/
+*.tmp
+*.log
+export/web/*.wasm
+export/web/*.pck
+export/web/*.js
+export/web/*.html
+scratch/

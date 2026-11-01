@@ -1,0 +1,234 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci74p2xq5m4r"]
+
+[ext_resource type="Script" path="res://scenes/ui/CalculatorUI.gd" id="1_calc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.08, 0.12, 0.18, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.6, 0.9, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="CalculatorUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_calc")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -280.0
+offset_right = 460.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = " Simulador de Cierre Financiero - Vivienda VIS (Cartagena)"
+
+[node name="CloseBtn" type="Button" parent="Panel/VBox/Header"]
+custom_minimum_size = Vector2(36, 32)
+layout_mode = 2
+text = "✕"
+
+[node name="Content" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="LeftCol" type="VBoxContainer" parent="Panel/VBox/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Section1" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "1. Tu Perfil y Capacidad de Ahorro"
+
+[node name="IncomeLbl" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Ingresos mensuales del hogar:"
+
+[node name="IncomeVal" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.6, 1)
+text = "$2.000.000"
+
+[node name="IncomeSlider" type="HSlider" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+min_value = 1423500.0
+max_value = 8000000.0
+step = 50000.0
+value = 2000000.0
+
+[node name="SisbenLbl" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Grupo de Sisbén IV:"
+
+[node name="SisbenOption" type="OptionButton" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+
+[node name="CajaCheck" type="CheckBox" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+button_pressed = true
+text = "Afiliado a Caja (Comfenalco / Comfamiliar)"
+
+[node name="SavingsLbl" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Cesantías o Ahorro disponible ($ COP):"
+
+[node name="SavingsSpin" type="SpinBox" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+max_value = 1e+08
+step = 500000.0
+value = 2000000.0
+
+[node name="Section2" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "2. Plan de Preventa (Constructora)"
+
+[node name="FeeLbl" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Cuota mensual acordada (ej. Parque Galilea):"
+
+[node name="FeeSpin" type="SpinBox" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+max_value = 5000000.0
+step = 50000.0
+value = 700000.0
+
+[node name="MonthsLbl" type="Label" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Plazo de meses para pagar cuota inicial:"
+
+[node name="MonthsSpin" type="SpinBox" parent="Panel/VBox/Content/LeftCol"]
+layout_mode = 2
+min_value = 1.0
+max_value = 36.0
+value = 10.0
+
+[node name="RightCol" type="VBoxContainer" parent="Panel/VBox/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Section3" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "3. Estructura del Cierre Financiero"
+
+[node name="TotalPriceLbl" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Precio del Apartamento (135 SMMLV):"
+
+[node name="TotalPriceVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "$ 192.172.500"
+
+[node name="InitialFeeLbl" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Cuota Inicial Requerida (30%):"
+
+[node name="InitialFeeVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.7, 0.4, 1)
+text = "$ 57.651.750"
+
+[node name="InstallmentsVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.9, 1, 1)
+text = "Aporte en preventa: $ 7.000.000"
+
+[node name="SubsidiesHeader" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "Subsidios por Concurrencia:"
+
+[node name="CajaSubVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+text = "+ Subsidio Comfenalco: $ 42.705.000"
+
+[node name="MCYSubVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+text = "+ Subsidio Mi Casa Ya: $ 28.470.000"
+
+[node name="MCVASubVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+text = "+ Subsidio Mi Casa Va (Cartagena): $ 14.235.000"
+
+[node name="ConcurrenciaBadge" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 11
+text = "★ ¡CONCURRENCIA ACTIVA! Sumas subsidio de Caja y Mi Casa Ya."
+
+[node name="CreditLbl" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Saldo a cubrir con Crédito Bancario / FNA:"
+
+[node name="CreditVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+text = "$ 50.000.000"
+
+[node name="CreditCapVal" type="Label" parent="Panel/VBox/Content/RightCol"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Capacidad estimada banco: $ 60.000.000"
+
+[node name="ResultBanner" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.95, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "★ Estado del Cierre Financiero"
+horizontal_alignment = 1

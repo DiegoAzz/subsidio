@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: subsidio-web
+    restart: unless-stopped
+    ports:
+      - "80:80"

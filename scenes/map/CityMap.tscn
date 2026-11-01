@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp71e2x84w1n"]
+
+[ext_resource type="Script" path="res://scenes/map/CityMap.gd" id="1_citymap"]
+[ext_resource type="PackedScene" uid="uid://cx60m1x9pq4m" path="res://scenes/ui/HUD.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://b7vy84k2j6w3" path="res://scenes/player/Player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://b5e7d2n4x9a1" path="res://scenes/buildings/Building.tscn" id="4_building"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
+normal = Vector2(0, 1)
+
+[node name="CityMap" type="Node2D"]
+script = ExtResource("1_citymap")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="SandBase" type="Polygon2D" parent="Ground"]
+color = Color(0.88, 0.82, 0.7, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
+
+[node name="CentralPlaza" type="Polygon2D" parent="Ground"]
+color = Color(0.8, 0.72, 0.58, 1)
+polygon = PackedVector2Array(420, 240, 860, 240, 860, 480, 420, 480)
+
+[node name="RoadToGalilea" type="Polygon2D" parent="Ground"]
+color = Color(0.82, 0.74, 0.6, 1)
+polygon = PackedVector2Array(780, 280, 960, 200, 1000, 230, 820, 310)
+
+[node name="RoadToComfenalco" type="Polygon2D" parent="Ground"]
+color = Color(0.82, 0.74, 0.6, 1)
+polygon = PackedVector2Array(500, 280, 320, 200, 280, 230, 460, 310)
+
+[node name="RoadToBanco" type="Polygon2D" parent="Ground"]
+color = Color(0.82, 0.74, 0.6, 1)
+polygon = PackedVector2Array(460, 430, 280, 520, 320, 550, 500, 460)
+
+[node name="RoadToSisben" type="Polygon2D" parent="Ground"]
+color = Color(0.82, 0.74, 0.6, 1)
+polygon = PackedVector2Array(820, 430, 1000, 520, 960, 550, 780, 460)
+
+[node name="RoadToCorvivienda" type="Polygon2D" parent="Ground"]
+color = Color(0.82, 0.74, 0.6, 1)
+polygon = PackedVector2Array(610, 480, 670, 480, 670, 540, 610, 540)
+
+[node name="PlazaFountain" type="Polygon2D" parent="Ground"]
+color = Color(0.2, 0.6, 0.85, 1)
+polygon = PackedVector2Array(610, 330, 670, 330, 690, 360, 670, 390, 610, 390, 590, 360)
+
+[node name="MapBounds" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="BoundTop" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(640, 55)
+shape = SubResource("WorldBoundaryShape2D_top")
+
+[node name="BoundBottom" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(640, 710)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_top")
+
+[node name="BoundLeft" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(10, 360)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_top")
+
+[node name="BoundRight" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(1270, 360)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_top")
+
+[node name="YSortEntities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="BuildingGalilea" parent="YSortEntities" instance=ExtResource("4_building")]
+position = Vector2(1040, 190)
+
+[node name="BuildingComfenalco" parent="YSortEntities" instance=ExtResource("4_building")]
+position = Vector2(240, 190)
+
+[node name="BuildingBanco" parent="YSortEntities" instance=ExtResource("4_building")]
+position = Vector2(240, 540)
+
+[node name="BuildingSisben" parent="YSortEntities" instance=ExtResource("4_building")]
+position = Vector2(1040, 540)
+
+[node name="BuildingCorvivienda" parent="YSortEntities" instance=ExtResource("4_building")]
+position = Vector2(640, 580)
+
+[node name="Player" parent="YSortEntities" instance=ExtResource("3_player")]
+position = Vector2(640, 420)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

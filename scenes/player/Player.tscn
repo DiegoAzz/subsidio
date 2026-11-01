@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7vy84k2j6w3"]
+
+[ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_player"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
+radius = 36.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Shadow" type="Polygon2D" parent="Visual"]
+color = Color(0, 0, 0, 0.28)
+polygon = PackedVector2Array(-18, 12, -10, 18, 10, 18, 18, 12, 10, 6, -10, 6)
+
+[node name="BodyPlaceholder" type="Polygon2D" parent="Visual"]
+color = Color(0.18, 0.55, 0.95, 1)
+polygon = PackedVector2Array(-14, -14, 14, -14, 16, 12, -16, 12)
+
+[node name="HeadPlaceholder" type="Polygon2D" parent="Visual"]
+color = Color(0.98, 0.82, 0.65, 1)
+polygon = PackedVector2Array(-10, -32, 10, -32, 12, -14, -12, -14)
+
+[node name="HatCartagena" type="Polygon2D" parent="Visual"]
+color = Color(0.9, 0.85, 0.6, 1)
+polygon = PackedVector2Array(-16, -28, 16, -28, 10, -38, -10, -38)
+
+[node name="NameLabel" type="Label" parent="Visual"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -62.0
+offset_right = 60.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Ciudadano"
+horizontal_alignment = 1
+
+[node name="StatusBadge" type="Label" parent="Visual"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -46.0
+offset_right = 70.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Progreso: 0%"
+horizontal_alignment = 1
+
+[node name="InteractionRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 45)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detect")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_interaction_area_exited"]

@@ -1,0 +1,191 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx60m1x9pq4m"]
+
+[ext_resource type="Script" path="res://scenes/ui/HUD.gd" id="1_hud"]
+[ext_resource type="PackedScene" uid="uid://ci74p2xq5m4r" path="res://scenes/ui/CalculatorUI.tscn" id="2_calc"]
+[ext_resource type="PackedScene" uid="uid://dp6t2x91a1u7" path="res://scenes/ui/QuestUI.tscn" id="3_quest"]
+[ext_resource type="PackedScene" uid="uid://b3u8y1x1m8y9" path="res://scenes/ui/DialogueUI.tscn" id="4_dialogue"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.08, 0.12, 0.18, 0.92)
+border_width_bottom = 2
+border_color = Color(0.2, 0.5, 0.8, 0.8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat"]
+bg_color = Color(0.06, 0.08, 0.12, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.35, 0.5, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="HBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AppTitle" type="Label" parent="TopBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.75, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "  🏠 Mi Techo Heroico (Cartagena VIS)"
+
+[node name="BtnCalc" type="Button" parent="TopBar/HBox"]
+layout_mode = 2
+text = "📊 Calculadora de Subsidios"
+
+[node name="BtnQuests" type="Button" parent="TopBar/HBox"]
+layout_mode = 2
+text = "📋 Hoja de Ruta / Trámites"
+
+[node name="BtnNet" type="Button" parent="TopBar/HBox"]
+layout_mode = 2
+text = "🌐 Multijugador"
+
+[node name="BtnFullscreen" type="Button" parent="TopBar/HBox"]
+layout_mode = 2
+text = "⛶ Pantalla Completa"
+
+[node name="Spacer" type="Control" parent="TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusLbl" type="Label" parent="TopBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "Proyecto Objetivo: Parque Galilea  "
+
+[node name="ChatPanel" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -160.0
+offset_right = 300.0
+offset_bottom = -12.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_chat")
+
+[node name="VBox" type="VBoxContainer" parent="ChatPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ChatTitle" type="Label" parent="ChatPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "💬 Chat Comunitario en Vivo"
+
+[node name="ChatLog" type="RichTextLabel" parent="ChatPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+scroll_following = true
+
+[node name="HBox" type="HBoxContainer" parent="ChatPanel/VBox"]
+layout_mode = 2
+
+[node name="ChatInput" type="LineEdit" parent="ChatPanel/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "Escribe un mensaje o pregunta..."
+
+[node name="BtnSend" type="Button" parent="ChatPanel/VBox/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Enviar"
+
+[node name="MultiplayerModal" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="MultiplayerModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="PanelContainer" parent="MultiplayerModal"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="MultiplayerModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "🌐 Conectar a Servidor Multijugador"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Ingresa la dirección IP o dominio del servidor:"
+
+[node name="ServerInput" type="LineEdit" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "ej. wss://tu-dominio.com o 127.0.0.1"
+
+[node name="BtnConnect" type="Button" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+text = "Conectar como Jugador"
+
+[node name="BtnHost" type="Button" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+text = "Iniciar como Servidor Local (Host)"
+
+[node name="NetStatusLbl" type="Label" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Desconectado"
+horizontal_alignment = 1
+
+[node name="CloseNetBtn" type="Button" parent="MultiplayerModal/Panel/VBox"]
+layout_mode = 2
+text = "Cerrar"
+
+[node name="DialogueUI" parent="." instance=ExtResource("4_dialogue")]
+visible = false
+
+[node name="QuestUI" parent="." instance=ExtResource("3_quest")]
+visible = false
+
+[node name="CalculatorUI" parent="." instance=ExtResource("2_calc")]
+visible = false
