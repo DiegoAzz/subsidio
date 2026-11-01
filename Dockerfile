@@ -43,6 +43,9 @@ FROM nginx:alpine
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/export/web/ /usr/share/nginx/html/
 
+# Exponer puertos habituales para máxima compatibilidad con Coolify/Traefik
 EXPOSE 80
+EXPOSE 3000
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]

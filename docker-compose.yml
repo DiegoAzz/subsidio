@@ -7,5 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: subsidio-web
     restart: unless-stopped
-    ports:
-      - "80:80"
+    expose:
+      - "80"
+      - "3000"
+      - "8080"
