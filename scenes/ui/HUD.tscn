@@ -40,23 +40,23 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.75, 0.2, 1)
 theme_override_font_sizes/font_size = 14
-text = "  🏠 Mi Techo Heroico (Cartagena VIS)"
+text = "  Mi Techo Heroico (Cartagena VIS)"
 
 [node name="BtnCalc" type="Button" parent="TopBar/HBox"]
 layout_mode = 2
-text = "📊 Calculadora de Subsidios"
+text = "Calculadora de Subsidios"
 
 [node name="BtnQuests" type="Button" parent="TopBar/HBox"]
 layout_mode = 2
-text = "📋 Hoja de Ruta / Trámites"
+text = "Hoja de Ruta / Trámites"
 
 [node name="BtnNet" type="Button" parent="TopBar/HBox"]
 layout_mode = 2
-text = "🌐 Multijugador"
+text = "Multijugador"
 
 [node name="BtnFullscreen" type="Button" parent="TopBar/HBox"]
 layout_mode = 2
-text = "⛶ Pantalla Completa"
+text = "Pantalla Completa"
 
 [node name="Spacer" type="Control" parent="TopBar/HBox"]
 layout_mode = 2

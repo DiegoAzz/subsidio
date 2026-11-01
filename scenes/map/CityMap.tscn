@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp71e2x84w1n"]
+[gd_scene load_steps=5 format=3 uid="uid://dp71e2x84w1n"]
 
 [ext_resource type="Script" path="res://scenes/map/CityMap.gd" id="1_citymap"]
 [ext_resource type="PackedScene" uid="uid://cx60m1x9pq4m" path="res://scenes/ui/HUD.tscn" id="2_hud"]
 [ext_resource type="PackedScene" uid="uid://b7vy84k2j6w3" path="res://scenes/player/Player.tscn" id="3_player"]
 [ext_resource type="PackedScene" uid="uid://b5e7d2n4x9a1" path="res://scenes/buildings/Building.tscn" id="4_building"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
-normal = Vector2(0, 1)
 
 [node name="CityMap" type="Node2D"]
 script = ExtResource("1_citymap")
@@ -44,28 +41,6 @@ polygon = PackedVector2Array(610, 480, 670, 480, 670, 540, 610, 540)
 [node name="PlazaFountain" type="Polygon2D" parent="Ground"]
 color = Color(0.2, 0.6, 0.85, 1)
 polygon = PackedVector2Array(610, 330, 670, 330, 690, 360, 670, 390, 610, 390, 590, 360)
-
-[node name="MapBounds" type="StaticBody2D" parent="."]
-collision_mask = 2
-
-[node name="BoundTop" type="CollisionShape2D" parent="MapBounds"]
-position = Vector2(640, 55)
-shape = SubResource("WorldBoundaryShape2D_top")
-
-[node name="BoundBottom" type="CollisionShape2D" parent="MapBounds"]
-position = Vector2(640, 710)
-rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_top")
-
-[node name="BoundLeft" type="CollisionShape2D" parent="MapBounds"]
-position = Vector2(10, 360)
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_top")
-
-[node name="BoundRight" type="CollisionShape2D" parent="MapBounds"]
-position = Vector2(1270, 360)
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_top")
 
 [node name="YSortEntities" type="Node2D" parent="."]
 y_sort_enabled = true

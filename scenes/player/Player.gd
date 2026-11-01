@@ -57,6 +57,8 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = input_vector * speed
 	move_and_slide()
+	global_position.x = clamp(global_position.x, 30.0, 1250.0)
+	global_position.y = clamp(global_position.y, 75.0, 695.0)
 	
 	# Orientar raycast de interacción según la dirección de movimiento
 	if input_vector != Vector2.ZERO:
