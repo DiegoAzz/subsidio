@@ -6,3 +6,4 @@ export/web/*.pck
 export/web/*.js
 export/web/*.html
 scratch/
+*.uid

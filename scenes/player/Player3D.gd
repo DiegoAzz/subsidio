@@ -51,9 +51,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# Límites suaves dentro de la mini-ciudad
-	global_position.x = clamp(global_position.x, -16.0, 16.0)
-	global_position.z = clamp(global_position.z, -12.0, 12.0)
-	global_position.y = 0.0 # Mantener pegado al suelo
+	global_position.x = clamp(global_position.x, -14.0, 14.0)
+	global_position.z = clamp(global_position.z, -12.0, 15.0)
+	global_position.y = 0.55 # Altura rasante sobre aceras y asfalto de Kenney
 	
 	# Rotación del modelo hacia la dirección de movimiento
 	if direction.length_squared() > 0.01:

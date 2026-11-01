@@ -33,8 +33,9 @@ RUN mkdir -p /root/.local/share/godot/export_templates/4.7.2.stable \
 WORKDIR /app
 COPY . /app
 
-# Exportar el proyecto para la Web (HTML5/WebAssembly)
+# Importar recursos y exportar el proyecto para la Web (HTML5/WebAssembly)
 RUN mkdir -p /app/export/web \
+    && godot --headless --import \
     && godot --headless --export-release "Web" /app/export/web/index.html
 
 # Stage 2: Servidor Nginx ultra-ligero
