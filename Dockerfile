@@ -8,6 +8,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     unzip \
+    libfontconfig1 \
+    libasound2 \
+    libxcursor1 \
+    libxinerama1 \
+    libxrandr2 \
+    libxi6 \
     && rm -rf /var/lib/apt/lists/*
 
 # Descargar Godot Linux Headless
@@ -27,11 +33,11 @@ RUN mkdir -p /root/.local/share/godot/export_templates/4.7.2.stable \
 WORKDIR /app
 COPY . /app
 
-# Exportar el proyecto para la Web
+# Exportar el proyecto para la Web (HTML5/WebAssembly)
 RUN mkdir -p /app/export/web \
     && godot --headless --export-release "Web" /app/export/web/index.html
 
-# Stage 2: Servidor Nginx ultra-ligero con cabeceras de aislamiento WebAssembly
+# Stage 2: Servidor Nginx ultra-ligero
 FROM nginx:alpine
 
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
