@@ -10,6 +10,9 @@ extends Node3D
 @onready var player: CharacterBody3D = $Player3D
 @onready var camera: Camera3D = $Camera3D
 @onready var hud: CanvasLayer = $HUD
+@onready var office_interior: Node3D = $OfficeInterior3D
+
+var in_office_mode: bool = false
 
 # Materiales de paleta vibrante estilo Kenney (evita sobreexposición y lavado blanco)
 var palette_materials: Dictionary = {}
@@ -68,13 +71,67 @@ func _ready() -> void:
 	build_road_network()
 	build_city_props()
 	setup_buildings()
+	
+	# Asegurar cámara inicial de la ciudad
+	camera.current = true
+	
+	# Conexión con el sistema de oficinas 3D
+	GameManager.dialogue_started.connect(_on_enter_office)
+	if office_interior:
+		office_interior.exit_office_requested.connect(_on_exit_office)
+		var off_cam = office_interior.get_node_or_null("OfficeCamera3D")
+		if off_cam:
+			off_cam.current = false
+		var off_hud = office_interior.get_node_or_null("OfficeHUD")
+		if off_hud:
+			off_hud.visible = false
 
 func _process(delta: float) -> void:
+	if in_office_mode:
+		return
+		
 	if player and camera:
-		# Cámara isométrica suave que sigue al jugador
+		# Cámara isométrica suave que sigue al jugador en las calles
 		var target_cam_pos: Vector3 = player.global_position + Vector3(0.0, 13.0, 14.0)
 		camera.global_position = camera.global_position.lerp(target_cam_pos, delta * 4.5)
 		camera.look_at(player.global_position + Vector3(0.0, 1.0, 0.0), Vector3.UP)
+
+func _on_enter_office(entity_data: Dictionary) -> void:
+	if not office_interior:
+		return
+		
+	in_office_mode = true
+	office_interior.setup_office(entity_data)
+	
+	var off_cam = office_interior.get_node_or_null("OfficeCamera3D")
+	if off_cam:
+		off_cam.current = true
+		
+	if player:
+		player.set_physics_process(false)
+		player.velocity = Vector3.ZERO
+		
+	if hud:
+		hud.visible = false
+
+func _on_exit_office() -> void:
+	in_office_mode = false
+	
+	if camera:
+		camera.current = true
+		
+	if player:
+		player.set_physics_process(true)
+		
+	if hud:
+		hud.visible = true
+		
+	if office_interior:
+		var off_hud = office_interior.get_node_or_null("OfficeHUD")
+		if off_hud:
+			off_hud.visible = false
+			
+	GameManager.end_dialogue()
 
 ## Coloca un tile de Kenney en la cuadrícula de 3x3 metros
 func place_kenney_tile(tile_name: String, grid_x: int, grid_z: int, rot_deg: float = 0.0) -> void:

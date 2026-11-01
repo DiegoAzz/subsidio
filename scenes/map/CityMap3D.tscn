@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://scenes/player/Player3D.tscn" id="3_plyr3d"]
 [ext_resource type="PackedScene" path="res://scenes/buildings/Building3D.tscn" id="4_bld3d"]
+[ext_resource type="PackedScene" path="res://scenes/office/OfficeInterior3D.tscn" id="5_off3d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.35, 0.65, 0.95, 1)
@@ -76,3 +77,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 11.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 
 [node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="OfficeInterior3D" parent="." instance=ExtResource("5_off3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)

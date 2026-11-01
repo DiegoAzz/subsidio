@@ -1,0 +1,459 @@
+[gd_scene load_steps=35 format=3]
+
+[ext_resource type="Script" path="res://scenes/office/OfficeInterior3D.gd" id="1_off3d"]
+
+[sub_resource type="Environment" id="Environment_off"]
+background_mode = 1
+background_color = Color(0.18, 0.20, 0.24, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.88, 0.90, 0.94, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.82, 0.80, 0.75, 1)
+roughness = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+material = SubResource("StandardMaterial3D_floor")
+size = Vector3(10.0, 0.2, 9.0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_backwall"]
+albedo_color = Color(0.08, 0.45, 0.35, 1)
+roughness = 0.65
+
+[sub_resource type="BoxMesh" id="BoxMesh_backwall"]
+material = SubResource("StandardMaterial3D_backwall")
+size = Vector3(10.0, 3.8, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sidewall"]
+albedo_color = Color(0.88, 0.87, 0.84, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_sidewall"]
+material = SubResource("StandardMaterial3D_sidewall")
+size = Vector3(0.3, 3.8, 9.0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceiling"]
+albedo_color = Color(0.92, 0.92, 0.92, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_ceiling"]
+material = SubResource("StandardMaterial3D_ceiling")
+size = Vector3(10.0, 0.2, 9.0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_banner"]
+albedo_color = Color(0.08, 0.45, 0.35, 1)
+metallic = 0.2
+roughness = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_banner"]
+material = SubResource("StandardMaterial3D_banner")
+size = Vector3(7.2, 0.8, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poster"]
+albedo_color = Color(0.96, 0.95, 0.92, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_poster"]
+material = SubResource("StandardMaterial3D_poster")
+size = Vector3(1.8, 2.2, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wood_desk"]
+albedo_color = Color(0.30, 0.18, 0.12, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_desktop"]
+material = SubResource("StandardMaterial3D_wood_desk")
+size = Vector3(2.6, 0.08, 1.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_desk_base"]
+albedo_color = Color(0.22, 0.23, 0.25, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_desk_modesty"]
+material = SubResource("StandardMaterial3D_desk_base")
+size = Vector3(2.4, 0.72, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_desk_leg"]
+material = SubResource("StandardMaterial3D_desk_base")
+size = Vector3(0.08, 0.76, 1.0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laptop"]
+albedo_color = Color(0.2, 0.22, 0.25, 1)
+metallic = 0.7
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_laptop_base"]
+material = SubResource("StandardMaterial3D_laptop")
+size = Vector3(0.44, 0.02, 0.30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_screen"]
+albedo_color = Color(0.12, 0.55, 0.85, 1)
+emission_enabled = true
+emission = Color(0.15, 0.60, 0.95, 1)
+emission_energy_multiplier = 1.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_laptop_screen"]
+material = SubResource("StandardMaterial3D_screen")
+size = Vector3(0.42, 0.28, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_folder_yellow"]
+albedo_color = Color(0.92, 0.75, 0.22, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_folder"]
+material = SubResource("StandardMaterial3D_folder_yellow")
+size = Vector3(0.34, 0.08, 0.26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leather"]
+albedo_color = Color(0.18, 0.18, 0.20, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_chair_seat"]
+material = SubResource("StandardMaterial3D_leather")
+size = Vector3(0.54, 0.08, 0.50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_chair_back"]
+material = SubResource("StandardMaterial3D_leather")
+size = Vector3(0.50, 0.70, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suit"]
+albedo_color = Color(0.08, 0.45, 0.35, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_suit_torso"]
+material = SubResource("StandardMaterial3D_suit")
+size = Vector3(0.50, 0.60, 0.30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shirt"]
+albedo_color = Color(0.96, 0.96, 0.96, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shirt"]
+material = SubResource("StandardMaterial3D_shirt")
+size = Vector3(0.16, 0.22, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skin"]
+albedo_color = Color(0.95, 0.78, 0.65, 1)
+roughness = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+material = SubResource("StandardMaterial3D_skin")
+radius = 0.18
+height = 0.36
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hair"]
+albedo_color = Color(0.12, 0.10, 0.08, 1)
+roughness = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_hair"]
+material = SubResource("StandardMaterial3D_hair")
+radius = 0.20
+height = 0.24
+
+[sub_resource type="BoxMesh" id="BoxMesh_arm"]
+material = SubResource("StandardMaterial3D_suit")
+size = Vector3(0.12, 0.12, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pedestal"]
+albedo_color = Color(0.95, 0.95, 0.95, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_pedestal"]
+material = SubResource("StandardMaterial3D_pedestal")
+size = Vector3(0.9, 0.85, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_model_bldg"]
+albedo_color = Color(0.85, 0.85, 0.88, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_model_bldg"]
+material = SubResource("StandardMaterial3D_model_bldg")
+size = Vector3(0.5, 0.9, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glass_case"]
+transparency = 1
+albedo_color = Color(0.7, 0.9, 1.0, 0.3)
+roughness = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_glass_case"]
+material = SubResource("StandardMaterial3D_glass_case")
+size = Vector3(0.7, 1.05, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plant_pot"]
+albedo_color = Color(0.92, 0.92, 0.92, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pot"]
+material = SubResource("StandardMaterial3D_plant_pot")
+top_radius = 0.32
+bottom_radius = 0.22
+height = 0.65
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plant_leaf"]
+albedo_color = Color(0.18, 0.52, 0.22, 1)
+roughness = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_leaf"]
+material = SubResource("StandardMaterial3D_plant_leaf")
+top_radius = 0.05
+bottom_radius = 0.65
+height = 1.2
+
+[node name="OfficeInterior3D" type="Node3D"]
+script = ExtResource("1_off3d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_off")
+
+[node name="OfficeCamera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.965926, 0.051764, -0.253637, 0, 0.979796, 0.200000, 0.258819, -0.193185, 0.946411, -0.85, 1.62, 2.35)
+current = true
+fov = 42.0
+
+[node name="CeilingLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
+light_color = Color(1, 0.97, 0.92, 1)
+light_energy = 1.4
+omni_range = 10.0
+
+[node name="DeskSpotLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.2, 0.4)
+light_color = Color(1, 0.98, 0.92, 1)
+light_energy = 1.8
+spot_range = 6.0
+spot_angle = 45.0
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_floor")
+
+[node name="BackWall" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, -4.35)
+mesh = SubResource("BoxMesh_backwall")
+
+[node name="LeftWall" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.85, 1.9, 0)
+mesh = SubResource("BoxMesh_sidewall")
+
+[node name="RightWall" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85, 1.9, 0)
+mesh = SubResource("BoxMesh_sidewall")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9, 0)
+mesh = SubResource("BoxMesh_ceiling")
+
+[node name="BrandBanner" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -4.18)
+mesh = SubResource("BoxMesh_banner")
+
+[node name="BrandTitleLabel3D" type="Label3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -4.1)
+billboard = 0
+font_size = 38
+outline_size = 12
+outline_modulate = Color(0.04, 0.06, 0.1, 1)
+text = "SALA DE VENTAS: PARQUE GALILEA"
+
+[node name="PosterLeft" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, 2.0, -4.18)
+mesh = SubResource("BoxMesh_poster")
+
+[node name="PosterLabel3D" type="Label3D" parent="Room/PosterLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.04)
+font_size = 20
+outline_size = 8
+outline_modulate = Color(0.05, 0.05, 0.08, 1)
+modulate = Color(0.12, 0.15, 0.2, 1)
+text = "PROYECTO VIS"
+
+[node name="PosterRight" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 2.0, -4.18)
+mesh = SubResource("BoxMesh_poster")
+
+[node name="PosterLabel3D" type="Label3D" parent="Room/PosterRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.04)
+font_size = 20
+outline_size = 8
+outline_modulate = Color(0.05, 0.05, 0.08, 1)
+modulate = Color(0.12, 0.15, 0.2, 1)
+text = "SUBSIDIOS"
+
+[node name="ProjectPedestal" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 0.42, -1.0)
+mesh = SubResource("BoxMesh_pedestal")
+
+[node name="ProjectModelBldg" type="MeshInstance3D" parent="Room/ProjectPedestal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0)
+mesh = SubResource("BoxMesh_model_bldg")
+
+[node name="GlassCase" type="MeshInstance3D" parent="Room/ProjectPedestal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+mesh = SubResource("BoxMesh_glass_case")
+
+[node name="PlantPot" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 0.32, -3.5)
+mesh = SubResource("CylinderMesh_pot")
+
+[node name="PlantFoliage" type="MeshInstance3D" parent="Room/PlantPot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CylinderMesh_leaf")
+
+[node name="Desk" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Desktop" type="MeshInstance3D" parent="Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+mesh = SubResource("BoxMesh_desktop")
+
+[node name="ModestyPanel" type="MeshInstance3D" parent="Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0.45)
+mesh = SubResource("BoxMesh_desk_modesty")
+
+[node name="LegLeft" type="MeshInstance3D" parent="Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.38, 0)
+mesh = SubResource("BoxMesh_desk_leg")
+
+[node name="LegRight" type="MeshInstance3D" parent="Desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.38, 0)
+mesh = SubResource("BoxMesh_desk_leg")
+
+[node name="LaptopBase" type="MeshInstance3D" parent="Desk"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.55, 0.83, 0.08)
+mesh = SubResource("BoxMesh_laptop_base")
+
+[node name="LaptopScreen" type="MeshInstance3D" parent="Desk/LaptopBase"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.15, -0.13)
+mesh = SubResource("BoxMesh_laptop_screen")
+
+[node name="Folders" type="MeshInstance3D" parent="Desk"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.65, 0.86, 0.08)
+mesh = SubResource("BoxMesh_folder")
+
+[node name="Advisor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.65)
+
+[node name="ExecutiveChair" type="Node3D" parent="Advisor"]
+
+[node name="ChairSeat" type="MeshInstance3D" parent="Advisor/ExecutiveChair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
+mesh = SubResource("BoxMesh_chair_seat")
+
+[node name="ChairBack" type="MeshInstance3D" parent="Advisor/ExecutiveChair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.25)
+mesh = SubResource("BoxMesh_chair_back")
+
+[node name="Visual" type="Node3D" parent="Advisor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+
+[node name="BodyMesh" type="MeshInstance3D" parent="Advisor/Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_suit_torso")
+
+[node name="ShirtMesh" type="MeshInstance3D" parent="Advisor/Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0.15)
+mesh = SubResource("BoxMesh_shirt")
+
+[node name="HeadMesh" type="MeshInstance3D" parent="Advisor/Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+mesh = SubResource("SphereMesh_head")
+
+[node name="HairMesh" type="MeshInstance3D" parent="Advisor/Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74, -0.02)
+mesh = SubResource("SphereMesh_hair")
+
+[node name="ArmLeft" type="MeshInstance3D" parent="Advisor/Visual"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.32, 0.05, 0.20)
+mesh = SubResource("BoxMesh_arm")
+
+[node name="ArmRight" type="MeshInstance3D" parent="Advisor/Visual"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.32, 0.05, 0.20)
+mesh = SubResource("BoxMesh_arm")
+
+[node name="AdvisorNameLabel3D" type="Label3D" parent="Advisor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15, 0)
+billboard = 1
+no_depth_test = true
+font_size = 24
+outline_size = 8
+outline_modulate = Color(0.04, 0.06, 0.1, 1)
+modulate = Color(0.2, 0.9, 0.8, 1)
+text = "Lic. Carolina Méndez
+Asesora Comercial - Parque Galilea"
+
+[node name="SpeechBubble3D" type="Label3D" parent="Advisor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82, 0)
+billboard = 1
+no_depth_test = true
+font_size = 18
+outline_size = 7
+outline_modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 0.95, 0.6, 1)
+text = "«¡Hola! Bienvenido a nuestra oficina. Tome asiento, por favor.»"
+
+[node name="ClientChairLeft" type="Node3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.7, 0, 1.25)
+
+[node name="Seat" type="MeshInstance3D" parent="ClientChairLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
+mesh = SubResource("BoxMesh_chair_seat")
+
+[node name="Back" type="MeshInstance3D" parent="ClientChairLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0.25)
+mesh = SubResource("BoxMesh_chair_back")
+
+[node name="OfficeHUD" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="PanelContainer" parent="OfficeHUD"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBox" type="VBoxContainer" parent="OfficeHUD/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="OfficeHUD/Panel/VBox"]
+layout_mode = 2
+
+[node name="EntityTitle" type="Label" parent="OfficeHUD/Panel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "🏢 SALA DE VENTAS: PARQUE GALILEA"
+
+[node name="AdvisorName" type="Label" parent="OfficeHUD/Panel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.85, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "Atendido por: Lic. Carolina Méndez"
+
+[node name="ExitBtn" type="Button" parent="OfficeHUD/Panel/VBox/Header"]
+custom_minimum_size = Vector2(160, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🚶 Salir a la Ciudad"
+
+[node name="HSeparator" type="HSeparator" parent="OfficeHUD/Panel/VBox"]
+layout_mode = 2
+
+[node name="DialogueText" type="RichTextLabel" parent="OfficeHUD/Panel/VBox"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "¡Hola! Bienvenidos a Parque Galilea. Te explico cómo lograr el cierre financiero de tu nuevo apartamento en Cartagena con cuotas mensuales de $700.000."
+
+[node name="OptionsScroll" type="ScrollContainer" parent="OfficeHUD/Panel/VBox"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptionsContainer" type="VBoxContainer" parent="OfficeHUD/Panel/VBox/OptionsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6

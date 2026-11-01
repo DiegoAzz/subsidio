@@ -40,6 +40,7 @@ func apply_appearance() -> void:
 		title_label.outline_size = 10
 		title_label.outline_modulate = Color(0.02, 0.04, 0.08, 1.0)
 	if prompt_label:
+		prompt_label.text = "✦ [Presiona E o Haz Clic para Entrar a la Oficina] ✦"
 		prompt_label.fixed_size = false
 		prompt_label.font_size = 28
 		prompt_label.pixel_size = 0.006

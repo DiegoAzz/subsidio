@@ -17,25 +17,9 @@ func _ready() -> void:
 	GameManager.dialogue_started.connect(display_dialogue)
 	GameManager.dialogue_ended.connect(func(): visible = false)
 
-func display_dialogue(data: Dictionary) -> void:
-	current_data = data
-	entity_name_label.text = data.get("name", "Asesor")
-	dialogue_text.text = data.get("intro", "")
-	
-	# Limpiar opciones anteriores
-	for child in options_container.get_children():
-		child.queue_free()
-		
-	# Crear botones para cada opción
-	var options: Array = data.get("options", [])
-	for opt in options:
-		var btn: Button = Button.new()
-		btn.text = "▶ " + opt.get("text", "")
-		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		btn.pressed.connect(_on_option_clicked.bind(opt))
-		options_container.add_child(btn)
-		
-	visible = true
+func display_dialogue(_data: Dictionary) -> void:
+	# La atención ahora es presencial en 3D dentro de la oficina (OfficeInterior3D)
+	visible = false
 
 func _on_option_clicked(opt: Dictionary) -> void:
 	if opt.has("response"):
